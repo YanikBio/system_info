@@ -38,7 +38,7 @@ def show_cpu():
     show_info = "Загруженность ядер: \n"
 
     for n in range(len(cpu)):
-        show_info += (f" Ядро №{n+1}: {cpu[n]:4}% " +  '|' * int((cpu[n]//10) + 1) + '\n')  # here I make an string with answer
+        show_info += (f" Ядро №{n+1}: {cpu[n]:4}% " + '|' * int((cpu[n])//5) + '\n')  # here I make an string with answer
     return show_info
 
 def get_proceses():
@@ -49,7 +49,7 @@ def get_proceses():
 def show_proc():
     proceses = get_proceses()
     _ = ''
-    show_info = f"Username:{_:20} |Name of process:{_:14} |PID:{_:1}  \n"
+    show_info = f"PROCESESS:\nUsername:{_:20} |Name of process:{_:14} |PID:{_:1}  \n"
     n = 0
     for proc in proceses:
         show_info += f"{proc.info['username']:30}| {proc.info['name']:30}| {proc.info['pid']:5}\n"
@@ -97,7 +97,7 @@ def iiiiiiiiiitS_SHOW_TIMEEEEE():
     h = seconds_time // 3600
     m = (seconds_time % 3600) // 60
     s = seconds_time % 60
-    show_time = f"ВРЕМЯ ДАННОЙ СЕССИИ: {h}{':'}{m}{':'}{s}\n"
+    show_time = f"ВРЕМЯ ДАННОЙ СЕССИИ: {h}{':'}{m:02}{':'}{s:02}\n"
 
     return show_time
 
