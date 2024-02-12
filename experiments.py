@@ -1,6 +1,6 @@
 import psutil as p 
 
 virtual = p.virtual_memory()
-swop = p.swap_memory()
+v_show = virtual.total / 1024 / 1024 / 1024
 
-print(virtual.total)
+print(f'{v_show}')
