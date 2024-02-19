@@ -4,12 +4,49 @@
 познакомится ближе с библиотеками, что помогают визуализировать полученную информаци.
 
 Как создать обновление в реальном времени в терминале?
+
+*** Добавить декоратор, который добавляет собранную информацию в файл 
 '''
 
 import psutil as p
-#from os import system
 import time as t
 
+
+def take_from(func):
+    def take_info():
+
+        data = func()
+
+        with open('file.txt', 'a') as file:
+            for user in data:
+                file.write(str(user) + '\n')
+
+            file.write('\n')
+
+        return data
+    
+    return take_info
+
+def take_from_processes(func):
+    def take_info():
+        proceses = func()
+
+        with open('file.txt', 'a') as file:
+            show_info = ''
+            n = 0
+            for proc in proceses:
+                show_info += f"{proc.info['username']:30}| {proc.info['name']:30}| {proc.info['pid']:5}\n"
+                n += 1
+                if n == 30:
+                    break
+            file.write(show_info)
+
+        return proceses
+
+    return take_info
+
+
+@take_from
 def get_user():
     users = p.users()
 
@@ -29,6 +66,7 @@ def show_user():
 
     return show_users
 
+@take_from
 def get_cpu():
     cpu_stat = p.cpu_percent(interval=1, percpu=True)
     return cpu_stat
@@ -41,6 +79,7 @@ def show_cpu():
         show_info += (f" Ядро №{n+1}: {cpu[n]:4}% " + '|' * int((cpu[n])//5) + '\n')  # here I make an string with answer
     return show_info
 
+@take_from_processes
 def get_proceses():
     proceses = p.process_iter(['pid', 'name', 'username'])
         
@@ -59,6 +98,7 @@ def show_proc():
 
     return show_info
 
+@take_from
 def get_memory():
     virtual = p.virtual_memory()
     swop = p.swap_memory()
@@ -82,6 +122,7 @@ def show_memory():
 
 
     return show_vsmemory
+
 
 def get_time():
     boot_time = int(p.boot_time())
