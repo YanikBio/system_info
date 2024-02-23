@@ -1,3 +1,7 @@
+"""
+Декораторы для файлов
+"""
+
 def take_from(func):
     def take_info():
         data = func()

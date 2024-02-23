@@ -1,3 +1,7 @@
+'''
+ оставляю почти без изменений
+'''
+
 from get_info import get_cpu, get_memory, get_proceses, get_time, get_user
 import time as t
 

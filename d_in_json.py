@@ -1,3 +1,7 @@
+'''
+декораторы для json
+'''
+
 import json
 
 def json_decorator(way_to_file = 'json_data.json'):
